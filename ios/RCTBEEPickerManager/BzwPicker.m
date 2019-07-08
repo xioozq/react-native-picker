@@ -43,12 +43,21 @@
 }
 -(void)makeuiWith:(NSArray *)topbgColor With:(NSArray *)bottombgColor With:(NSArray *)leftbtnbgColor With:(NSArray *)rightbtnbgColor With:(NSArray *)centerbtnColor
 {
-    UIView *view = [[UIView alloc] initWithFrame:CGRectMake(0,0, self.frame.size.width, 40)];
+    UIView *view = [[UIView alloc] initWithFrame:CGRectMake(0,0, self.frame.size.width, 50)];
     view.backgroundColor = [self colorWith:topbgColor];
+    
+    // toolbar下边框
+    CALayer *bottomBorder = [CALayer layer];
+    float height=view.frame.size.height-1.0f;
+    float width=view.frame.size.width;
+    bottomBorder.frame = CGRectMake(0.0f, height, width, 1.0f);
+    bottomBorder.backgroundColor = [UIColor colorWithRed:238/255.0 green:238/255.0 blue:238/255.0 alpha:1].CGColor;
+    [view.layer addSublayer:bottomBorder];
+    
     [self addSubview:view];
     
     self.leftBtn = [UIButton buttonWithType:UIButtonTypeCustom];
-    self.leftBtn.frame = CGRectMake(0, 0, 90, 40);
+    self.leftBtn.frame = CGRectMake(30, 0, 90, 50);
     self.leftBtn.font = [UIFont fontWithName:_pickerFontFamily size:[_pickerToolBarFontSize integerValue]];
     self.leftBtn.contentHorizontalAlignment = UIControlContentHorizontalAlignmentLeft;
     [self.leftBtn setTitleEdgeInsets:UIEdgeInsetsMake(0, 10.0, 0, 0)];
@@ -58,7 +67,7 @@
     [view addSubview:self.leftBtn];
     
     self.rightBtn = [UIButton buttonWithType:UIButtonTypeCustom];
-    self.rightBtn.frame = CGRectMake(view.frame.size.width-90,0, 90, 40);
+    self.rightBtn.frame = CGRectMake(view.frame.size.width-120,0, 90, 50);
     self.rightBtn.font = [UIFont fontWithName:_pickerFontFamily size:[_pickerToolBarFontSize integerValue]];
     self.rightBtn.contentHorizontalAlignment=UIControlContentHorizontalAlignmentRight;
     [self.rightBtn setTitleEdgeInsets:UIEdgeInsetsMake(0, 0, 0, 10.0)];
@@ -67,14 +76,14 @@
     [self.rightBtn addTarget:self action:@selector(cfirmAction) forControlEvents:UIControlEventTouchUpInside];  
     [view addSubview:self.rightBtn];
     
-    UILabel *cenLabel=[[UILabel alloc]initWithFrame:CGRectMake(90, 5, SCREEN_WIDTH-180, 30)];
+    UILabel *cenLabel=[[UILabel alloc]initWithFrame:CGRectMake(90, 0, SCREEN_WIDTH-180, 50)];
     cenLabel.text=self.centStr;
     cenLabel.textAlignment=NSTextAlignmentCenter;
     cenLabel.font = [UIFont fontWithName:_pickerFontFamily size:[_pickerToolBarFontSize integerValue]];
     [cenLabel setTextColor:[self colorWith:centerbtnColor]];
     [view addSubview:cenLabel];
 
-    self.pick = [[UIPickerView alloc] initWithFrame:CGRectMake(0, 40, self.frame.size.width, self.frame.size.height - 40)];
+    self.pick = [[UIPickerView alloc] initWithFrame:CGRectMake(0, 50, self.frame.size.width, self.frame.size.height - 50)];
     self.pick.delegate = self;
     self.pick.dataSource = self;
     self.pick.showsSelectionIndicator=YES;
