@@ -27,8 +27,8 @@ const options = {
     onPickerSelect(){},
     pickerToolBarFontSize: 16,
     pickerToolBarHeight: 50,
-    pickerToolBarPaddingHorizontal: 30,
-    pickerBtnWidth: 90,
+    pickerBtnPaddingHorizontal: 30,
+    pickerBtnWidth: 120,
     pickerHeight: 300,
     pickerFontSize: 16,
     pickerFontColor: [31, 31 ,31, 1]
