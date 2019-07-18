@@ -43,6 +43,7 @@ typedef void(^backBolock)(NSDictionary * );
 @property(strong,nonatomic)NSString *pickerFontSize;
 @property(strong,nonatomic)NSString *pickerFontFamily;
 @property(strong,nonatomic)NSArray *pickerFontColor;
+@property(strong,nonatomic)NSArray *pickerToolBarBorderColor;
 @property(strong,nonatomic)NSString *pickerRowHeight;
 @property(strong,nonatomic)NSString *pickerToolBarHeight;
 @property(strong,nonatomic)NSString *pickerBtnWidth;
@@ -81,7 +82,7 @@ typedef void(^backBolock)(NSDictionary * );
 
 
 -(instancetype)initWithFrame:(CGRect)frame dic:(NSDictionary *)dic leftStr:(NSString *)leftStr centerStr:(NSString *)centerStr rightStr:(NSString *)rightStr topbgColor:(NSArray *)topbgColor bottombgColor:(NSArray *)bottombgColor leftbtnbgColor:(NSArray *)leftbtnbgColor rightbtnbgColor:(NSArray *)rightbtnbgColor centerbtnColor:(NSArray *)centerbtnColor selectValueArry:(NSArray *)selectValueArry  weightArry:(NSArray *)weightArry
-       pickerToolBarFontSize:(NSString *)pickerToolBarFontSize  pickerFontSize:(NSString *)pickerFontSize  pickerFontColor:(NSArray *)pickerFontColor  pickerRowHeight:(NSString *)pickerRowHeight  pickerFontFamily:(NSString *)pickerFontFamily pickerToolBarHeight:(NSString *)pickerToolBarHeight pickerBtnWidth:(NSString *)pickerBtnWidth pickerBtnPaddingHorizontal:(NSString *)pickerBtnPaddingHorizontal;
+       pickerToolBarFontSize:(NSString *)pickerToolBarFontSize  pickerFontSize:(NSString *)pickerFontSize  pickerFontColor:(NSArray *)pickerFontColor  pickerRowHeight:(NSString *)pickerRowHeight  pickerFontFamily:(NSString *)pickerFontFamily pickerToolBarHeight:(NSString *)pickerToolBarHeight pickerBtnWidth:(NSString *)pickerBtnWidth pickerBtnPaddingHorizontal:(NSString *)pickerBtnPaddingHorizontal pickerToolBarBorderColor:(NSArray *)pickerToolBarBorderColor;
 
 -(void)selectRow;
 @end

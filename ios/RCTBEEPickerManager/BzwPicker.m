@@ -12,7 +12,7 @@
 @implementation BzwPicker
 
 -(instancetype)initWithFrame:(CGRect)frame dic:(NSDictionary *)dic leftStr:(NSString *)leftStr centerStr:(NSString *)centerStr rightStr:(NSString *)rightStr topbgColor:(NSArray *)topbgColor bottombgColor:(NSArray *)bottombgColor leftbtnbgColor:(NSArray *)leftbtnbgColor rightbtnbgColor:(NSArray *)rightbtnbgColor centerbtnColor:(NSArray *)centerbtnColor selectValueArry:(NSArray *)selectValueArry  weightArry:(NSArray *)weightArry
-       pickerToolBarFontSize:(NSString *)pickerToolBarFontSize  pickerFontSize:(NSString *)pickerFontSize  pickerFontColor:(NSArray *)pickerFontColor pickerRowHeight:(NSString *)pickerRowHeight pickerFontFamily:(NSString *)pickerFontFamily pickerToolBarHeight:(NSString *)pickerToolBarHeight pickerBtnWidth:(NSString *)pickerBtnWidth pickerBtnPaddingHorizontal:(NSString *)pickerBtnPaddingHorizontal
+       pickerToolBarFontSize:(NSString *)pickerToolBarFontSize  pickerFontSize:(NSString *)pickerFontSize  pickerFontColor:(NSArray *)pickerFontColor pickerRowHeight:(NSString *)pickerRowHeight pickerFontFamily:(NSString *)pickerFontFamily pickerToolBarHeight:(NSString *)pickerToolBarHeight pickerBtnWidth:(NSString *)pickerBtnWidth pickerBtnPaddingHorizontal:(NSString *)pickerBtnPaddingHorizontal pickerToolBarBorderColor:(NSArray *)pickerToolBarBorderColor
 
 {
     self = [super initWithFrame:frame];
@@ -31,6 +31,7 @@
         self.pickerFontSize=pickerFontSize;
         self.pickerFontFamily=pickerFontFamily;
         self.pickerFontColor=pickerFontColor;
+        self.pickerToolBarBorderColor = pickerToolBarBorderColor;
         self.pickerRowHeight=pickerRowHeight;
         self.pickerToolBarHeight=pickerToolBarHeight;
         self.pickerBtnWidth = pickerBtnWidth;
@@ -52,10 +53,14 @@
     
     // toolbar下边框
     CALayer *bottomBorder = [CALayer layer];
-    float height=view.frame.size.height-1.0f;
-    float width=view.frame.size.width;
-    bottomBorder.frame = CGRectMake(0.0f, height, width, 1.0f);
-    bottomBorder.backgroundColor = [UIColor colorWithRed:238/255.0 green:238/255.0 blue:238/255.0 alpha:1].CGColor;
+    float borderHeight=view.frame.size.height-1.0f;
+    float borderWidth=view.frame.size.width;
+    bottomBorder.frame = CGRectMake(0.0f, borderHeight, borderWidth, 1.0f);
+    float borderR = [self.pickerToolBarBorderColor[0] floatValue];
+    float borderG = [self.pickerToolBarBorderColor[1] floatValue];
+    float borderB = [self.pickerToolBarBorderColor[2] floatValue];
+    float borderA = [self.pickerToolBarBorderColor[3] floatValue];
+    [bottomBorder setBackgroundColor: [UIColor colorWithRed:borderR/255.0 green:borderG/255.0 blue:borderB/255.0 alpha:borderA].CGColor];
     [view.layer addSublayer:bottomBorder];
     
     [self addSubview:view];

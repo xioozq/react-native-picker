@@ -47,6 +47,7 @@ RCT_EXPORT_METHOD(_init:(NSDictionary *)indic){
     NSString *pickerTitleText=indic[@"pickerTitleText"];
     NSArray *pickerConfirmBtnColor=indic[@"pickerConfirmBtnColor"];
     NSArray *pickerCancelBtnColor=indic[@"pickerCancelBtnColor"];
+    NSArray *pickerToolBarBorderColor=indic[@"pickerToolBarBorderColor"];
     NSArray *pickerTitleColor=indic[@"pickerTitleColor"];
     NSArray *pickerToolBarBg=indic[@"pickerToolBarBg"];
     NSArray *pickerBg=indic[@"pickerBg"];
@@ -85,7 +86,7 @@ RCT_EXPORT_METHOD(_init:(NSDictionary *)indic){
         self.height = pickerHeight.integerValue;
     }
     
-    self.pick=[[BzwPicker alloc]initWithFrame:CGRectMake(0, SCREEN_HEIGHT, SCREEN_WIDTH, self.height) dic:dataDic leftStr:pickerCancelBtnText centerStr:pickerTitleText rightStr:pickerConfirmBtnText topbgColor:pickerToolBarBg bottombgColor:pickerBg leftbtnbgColor:pickerCancelBtnColor rightbtnbgColor:pickerConfirmBtnColor centerbtnColor:pickerTitleColor selectValueArry:selectArry weightArry:weightArry pickerToolBarFontSize:pickerToolBarFontSize pickerFontSize:pickerFontSize pickerFontColor:pickerFontColor  pickerRowHeight: pickerRowHeight pickerFontFamily:pickerFontFamily pickerToolBarHeight:pickerToolBarHeight pickerBtnWidth:pickerBtnWidth pickerBtnPaddingHorizontal:pickerBtnPaddingHorizontal];
+    self.pick=[[BzwPicker alloc]initWithFrame:CGRectMake(0, SCREEN_HEIGHT, SCREEN_WIDTH, self.height) dic:dataDic leftStr:pickerCancelBtnText centerStr:pickerTitleText rightStr:pickerConfirmBtnText topbgColor:pickerToolBarBg bottombgColor:pickerBg leftbtnbgColor:pickerCancelBtnColor rightbtnbgColor:pickerConfirmBtnColor centerbtnColor:pickerTitleColor selectValueArry:selectArry weightArry:weightArry pickerToolBarFontSize:pickerToolBarFontSize pickerFontSize:pickerFontSize pickerFontColor:pickerFontColor  pickerRowHeight: pickerRowHeight pickerFontFamily:pickerFontFamily pickerToolBarHeight:pickerToolBarHeight pickerBtnWidth:pickerBtnWidth pickerBtnPaddingHorizontal:pickerBtnPaddingHorizontal pickerToolBarBorderColor:pickerToolBarBorderColor];
     
     _pick.bolock=^(NSDictionary *backinfoArry){
 
