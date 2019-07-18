@@ -27,6 +27,11 @@
 |pickerFontColor       | array   | [31, 31, 31, 1]    | iOS/Android  |   |
 |pickerFontFamily      | string  |                    | iOS/Android  |   |
 |pickerRowHeight       | number  | 24                 | iOS          |   |
+|pickerToolBarHeight   | number  | 50                 | iOS          |   |
+|pickerHeight          | number  | 300                | iOS          |   |
+|pickerBtnWidth        | number  | 120                | iOS          |   |
+|pickerBtnPaddingHorizontal  | number  | 30                 | iOS          |   |
+|pickerToolBarBorderColor    | array   | [238, 238, 238, 1] | iOS          |   |
 |pickerData            | array   |                    | iOS/Android  |   |
 |selectedValue         | array   |                    | iOS/Android  |   |
 |onPickerConfirm       | function|                    | iOS/Android  |   |
