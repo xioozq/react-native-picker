@@ -248,6 +248,18 @@ public class PickerViewAlone extends LinearLayout {
         }
     }
 
+    public void setLineSpacing(float value) {
+
+        int viewCount = pickerViewAloneLayout.getChildCount();
+        for (int i = 0; i < viewCount; i++) {
+            View view = pickerViewAloneLayout.getChildAt(i);
+            if (view instanceof LoopView) {
+                LoopView loopView = (LoopView) view;
+                loopView.setLineSpacing(value);
+            }
+        }
+    }
+
     public int getViewHeight() {
         int viewHeight = 0;
         View view = pickerViewAloneLayout.getChildAt(0);

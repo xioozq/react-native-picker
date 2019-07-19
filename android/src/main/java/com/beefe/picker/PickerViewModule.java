@@ -88,16 +88,20 @@ public class PickerViewModule extends ReactContextBaseJavaModule implements Life
     private static final String SELECTED_VALUE = "selectedValue";
 
     private static final String IS_LOOP = "isLoop";
+    private static final String LINE_SPACING = "lineSpacing";
 
     private static final String WEIGHTS = "wheelFlex";
 
     private static final String PICKER_BG_COLOR = "pickerBg";
 
     private static final String PICKER_TOOL_BAR_BG = "pickerToolBarBg";
+    private static final String PICKER_TOOL_BAR_BORDER_COLOR = "pickerToolBarBorderColor";
     private static final String PICKER_TOOL_BAR_HEIGHT = "pickerToolBarHeight";
     private static final String PICKER_TOOL_BAR_TEXT_SIZE = "pickerToolBarFontSize";
 
     private static final String PICKER_CONFIRM_BTN_TEXT = "pickerConfirmBtnText";
+
+    private static final String PICKER_BTN_PADDING_HORIZONTAL = "pickerBtnPaddingHorizontal";
     private static final String PICKER_CONFIRM_BTN_COLOR = "pickerConfirmBtnColor";
 
     private static final String PICKER_CANCEL_BTN_TEXT = "pickerCancelBtnText";
@@ -122,6 +126,7 @@ public class PickerViewModule extends ReactContextBaseJavaModule implements Life
     private Dialog dialog = null;
 
     private boolean isLoop = true;
+    private float lineSpacing = 2.0F;
 
     private String confirmText;
     private String cancelText;
@@ -153,12 +158,15 @@ public class PickerViewModule extends ReactContextBaseJavaModule implements Life
         if (activity != null && options.hasKey(PICKER_DATA)) {
             View view = activity.getLayoutInflater().inflate(R.layout.picker_view, null);
             RelativeLayout barLayout = (RelativeLayout) view.findViewById(R.id.barLayout);
+            RelativeLayout barLayoutInner = (RelativeLayout) view.findViewById(R.id.barLayoutInner);
             TextView cancelTV = (TextView) view.findViewById(R.id.cancel);
             TextView titleTV = (TextView) view.findViewById(R.id.title);
             TextView confirmTV = (TextView) view.findViewById(R.id.confirm);
             RelativeLayout pickerLayout = (RelativeLayout) view.findViewById(R.id.pickerLayout);
             pickerViewLinkage = (PickerViewLinkage) view.findViewById(R.id.pickerViewLinkage);
             pickerViewAlone = (PickerViewAlone) view.findViewById(R.id.pickerViewAlone);
+
+            Integer paddingHorizontal = options.hasKey(PICKER_BTN_PADDING_HORIZONTAL) ? options.getInt(PICKER_BTN_PADDING_HORIZONTAL) : 10;
 
             int barViewHeight;
             if (options.hasKey(PICKER_TOOL_BAR_HEIGHT)) {
@@ -170,13 +178,19 @@ public class PickerViewModule extends ReactContextBaseJavaModule implements Life
             } else {
                 barViewHeight = (int) (activity.getResources().getDisplayMetrics().density * 40);
             }
-            RelativeLayout.LayoutParams params = new RelativeLayout.LayoutParams(
+            RelativeLayout.LayoutParams innerParams = new RelativeLayout.LayoutParams(
                     RelativeLayout.LayoutParams.MATCH_PARENT,
                     barViewHeight);
-            barLayout.setLayoutParams(params);
+            barLayoutInner.setLayoutParams(innerParams);
 
             if (options.hasKey(PICKER_TOOL_BAR_BG)) {
                 ReadableArray array = options.getArray(PICKER_TOOL_BAR_BG);
+                int[] colors = getColor(array);
+                barLayoutInner.setBackgroundColor(argb(colors[3], colors[0], colors[1], colors[2]));
+            }
+
+            if (options.hasKey(PICKER_TOOL_BAR_BORDER_COLOR)) {
+                ReadableArray array = options.getArray(PICKER_TOOL_BAR_BORDER_COLOR);
                 int[] colors = getColor(array);
                 barLayout.setBackgroundColor(argb(colors[3], colors[0], colors[1], colors[2]));
             }
@@ -192,6 +206,7 @@ public class PickerViewModule extends ReactContextBaseJavaModule implements Life
                 confirmText = options.getString(PICKER_CONFIRM_BTN_TEXT);
             }
             confirmTV.setText(!TextUtils.isEmpty(confirmText) ? confirmText : "");
+            confirmTV.setPadding(paddingHorizontal, 0, paddingHorizontal,0);
 
             if (options.hasKey(PICKER_CONFIRM_BTN_COLOR)) {
                 ReadableArray array = options.getArray(PICKER_CONFIRM_BTN_COLOR);
@@ -228,12 +243,17 @@ public class PickerViewModule extends ReactContextBaseJavaModule implements Life
             if (options.hasKey(PICKER_CANCEL_BTN_TEXT)) {
                 cancelText = options.getString(PICKER_CANCEL_BTN_TEXT);
             }
+
             cancelTV.setText(!TextUtils.isEmpty(cancelText) ? cancelText : "");
+
+            cancelTV.setPadding(paddingHorizontal, 0, paddingHorizontal,0);
+
             if (options.hasKey(PICKER_CANCEL_BTN_COLOR)) {
                 ReadableArray array = options.getArray(PICKER_CANCEL_BTN_COLOR);
                 int[] colors = getColor(array);
                 cancelTV.setTextColor(argb(colors[3], colors[0], colors[1], colors[2]));
             }
+
             cancelTV.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
@@ -256,6 +276,11 @@ public class PickerViewModule extends ReactContextBaseJavaModule implements Life
 
             if (options.hasKey(IS_LOOP)) {
                 isLoop = options.getBoolean(IS_LOOP);
+            }
+
+
+            if (options.hasKey(LINE_SPACING)) {
+                lineSpacing = (float) options.getDouble(LINE_SPACING);
             }
 
             if (options.hasKey(WEIGHTS)) {
@@ -304,17 +329,20 @@ public class PickerViewModule extends ReactContextBaseJavaModule implements Life
 
             int pickerViewHeight;
             String name = pickerData.getType(0).name();
+
             switch (name) {
                 case "Map":
                     curStatus = 1;
                     pickerViewLinkage.setVisibility(View.VISIBLE);
                     pickerViewAlone.setVisibility(View.GONE);
 
+
                     pickerViewLinkage.setPickerData(pickerData, weights);
                     pickerViewLinkage.setTextColor(pickerTextColor);
                     pickerViewLinkage.setTextSize(pickerTextSize);
                     pickerViewLinkage.setTextEllipsisLen(pickerTextEllipsisLen);
                     pickerViewLinkage.setIsLoop(isLoop);
+                    pickerViewLinkage.setLineSpacing(lineSpacing);
 
                     pickerViewLinkage.setOnSelectListener(new OnSelectedListener() {
                         @Override
@@ -330,11 +358,13 @@ public class PickerViewModule extends ReactContextBaseJavaModule implements Life
                     pickerViewAlone.setVisibility(View.VISIBLE);
                     pickerViewLinkage.setVisibility(View.GONE);
 
+
                     pickerViewAlone.setPickerData(pickerData, weights);
                     pickerViewAlone.setTextColor(pickerTextColor);
                     pickerViewAlone.setTextSize(pickerTextSize);
                     pickerViewAlone.setTextEllipsisLen(pickerTextEllipsisLen);
                     pickerViewAlone.setIsLoop(isLoop);
+                    pickerViewAlone.setLineSpacing(lineSpacing);
 
                     pickerViewAlone.setOnSelectedListener(new OnSelectedListener() {
                         @Override

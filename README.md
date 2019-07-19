@@ -12,6 +12,7 @@
 |Key | Type | Default| Support | Description |
 | --- | --- | ---- | ------ | ----------- |
 |isLoop                | Boolean | false              |     Android  |   |
+|lineSpacing           | number  | 2.0                |     Android  |   |
 |pickerTextEllipsisLen | number  | 6                  |     Android  |   |
 |pickerConfirmBtnText  | string  | confirm            | iOS/Android  |   |
 |pickerCancelBtnText   | string  | cancel             | iOS/Android  |   |
@@ -27,11 +28,11 @@
 |pickerFontColor       | array   | [31, 31, 31, 1]    | iOS/Android  |   |
 |pickerFontFamily      | string  |                    | iOS/Android  |   |
 |pickerRowHeight       | number  | 24                 | iOS          |   |
-|pickerToolBarHeight   | number  | 50                 | iOS          |   |
+|pickerToolBarHeight   | number  | 50                 | iOS/Android  |   |
 |pickerHeight          | number  | 300                | iOS          |   |
 |pickerBtnWidth        | number  | 120                | iOS          |   |
-|pickerBtnPaddingHorizontal  | number  | 30                 | iOS          |   |
-|pickerToolBarBorderColor    | array   | [238, 238, 238, 1] | iOS          |   |
+|pickerBtnPaddingHorizontal  | number  | 30                 | iOS/Android|   |
+|pickerToolBarBorderColor    | array   | [238, 238, 238, 1] | iOS/Android|   |
 |pickerData            | array   |                    | iOS/Android  |   |
 |selectedValue         | array   |                    | iOS/Android  |   |
 |onPickerConfirm       | function|                    | iOS/Android  |   |

@@ -31,6 +31,7 @@ const options = {
     pickerBtnPaddingHorizontal: 30,
     pickerBtnWidth: 120,
     pickerHeight: 300,
+    lineSpacing: 2,
     pickerFontSize: 16,
     pickerFontColor: [31, 31 ,31, 1]
 };

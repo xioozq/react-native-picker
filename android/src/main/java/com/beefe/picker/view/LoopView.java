@@ -223,6 +223,14 @@ public class LoopView extends View {
         }
     }
 
+    public final void setLineSpacing(float value) {
+        if (value > 0.0F) {
+            this.lineSpacingMultiplier = value;
+            remeasure();
+            invalidate();
+        }
+    }
+
     public final void setTextEllipsisLen(int len){
         textEllipsisLen = len;
     }
@@ -318,7 +326,7 @@ public class LoopView extends View {
         if (items == null) {
             return;
         }
-
+        
         String as[] = new String[itemsVisible];
         int change = (int) (totalScrollY / (lineSpacingMultiplier * maxTextHeight));
         preCurrentIndex = initPosition + change % items.size();

@@ -604,6 +604,21 @@ public class PickerViewLinkage extends LinearLayout {
         }
     }
 
+    public void setLineSpacing(float value){
+
+        switch (curRow) {
+            case 2:
+                loopViewOne.setLineSpacing(value);
+                loopViewTwo.setLineSpacing(value);
+                break;
+            case 3:
+                loopViewOne.setLineSpacing(value);
+                loopViewTwo.setLineSpacing(value);
+                loopViewThree.setLineSpacing(value);
+                break;
+        }
+    }
+
     public void setTypeface(Typeface typeface){
         switch (curRow) {
             case 2:
